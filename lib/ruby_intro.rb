@@ -3,33 +3,60 @@
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  if arr.any?
+    arr.inject(0, :+)
+  else
+    0
+  end
 end
 
 def max_2_sum arr
-  # YOUR CODE HERE
+    sum(arr.sort.last(2))
 end
 
 def sum_to_n? arr, n
-  # YOUR CODE HERE
+   arr.product(arr).any? {|couple| sum(couple) == n}
 end
 
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  "Hello, " + name
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  !!(s =~  /^[bcdfghjklmnpqrstvwxyz]/i)
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  if bin = /^[1|0]+/.match(s)
+	  bin.to_s.to_i(2) % 4 == 0
+  else
+    false
+  end
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+
+  # getter && setter
+  attr_accessor :isbn, :price
+
+  #constructor
+  def initialize(new_isbn, new_price)
+    if new_isbn == ''
+      raise ArgumentError.new("Must have an ISBN number")
+    end
+    self.isbn = new_isbn
+    if new_price <= 0
+      raise ArgumentError.new("Must have a positive price")
+    end
+    self.price = new_price.to_f
+  end
+  
+  #toString
+  def price_as_string
+    return sprintf "$"+"%.2f", price
+  end
 end
